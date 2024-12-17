@@ -42,9 +42,9 @@ export default function HomeScreen() {
         source={require('../../assets/images/logo.png')}
       />
       <View style={styles.mainContainer}>
-        <View className="flex items-center mt-16 mb-5">
+        <View className="flex items-center mt-14 mb-5">
           <Text className="text-5xl text-center font-bold">
-            Le Wagon Tokyo toolkit 🛠️
+            Tokyo Camp toolbox 🛠️
           </Text>
         </View>
         <View>
@@ -52,7 +52,7 @@ export default function HomeScreen() {
             Your one-stop app to boost your bootcamp experience.
           </Text>
         </View>
-        <View className="flex items-center mt-16 min-h-80 justify-end">
+        <View className="flex items-center mt-14 min-h-80 justify-end">
           <Text className="text-3xl text-center font-bold mb-5">
             Upcoming events 📅
           </Text>
