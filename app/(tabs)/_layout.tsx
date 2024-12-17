@@ -15,6 +15,8 @@ export default function TabLayout() {
           },
           default: {},
         }),
+        tabBarActiveTintColor: "#FF6464",
+        tabBarInactiveTintColor: "#000",
       }}>
       <Tabs.Screen
         name="index"
@@ -24,10 +26,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="food"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Lunch options',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="fork.knife" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="events"
+        options={{
+          title: 'Events',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="calendar" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="links"
+        options={{
+          title: 'Links',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="link" color={color} />,
         }}
       />
     </Tabs>

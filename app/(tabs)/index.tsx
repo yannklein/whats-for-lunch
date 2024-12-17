@@ -1,40 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import EventList from '@/components/EventList';
+import { Link } from 'expo-router';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
-type Event = {
-  id: string;
-  tky_even_meetup_id: string;
-  name: string;
-  venue: string;
-  event_date: string;
-  url: string;
-  description: string;
-};
-
 export default function HomeScreen() {
-  const fetchEvents = async () => {
-    try {
-      const url = 'https://tokyo-events.herokuapp.com/api';
-      const response = await fetch(url);
-      const events = await response.json();      
-      setEvents(events);
-      
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const [events, setEvents] = useState<Event[]>([]);
-
-  useEffect(() => {
-    fetchEvents();
-  }, []);
-
-  const extractDate = (dateString: string) => {
-    const date = new Date(dateString);
-    const options: Intl.DateTimeFormatOptions = { month: 'short', day: 'numeric' };
-    return new Intl.DateTimeFormat('en-US', options).format(date);  
-  };
-
   return (
     <>
       <Image
@@ -42,13 +10,13 @@ export default function HomeScreen() {
         source={require('../../assets/images/logo.png')}
       />
       <View style={styles.mainContainer}>
-        <View className="flex items-center mt-14 mb-5">
-          <Text className="text-5xl text-center font-bold">
-            Tokyo Camp toolbox 🛠️
+        <View className="flex items-center mt-14 mb-3">
+          <Text className="text-5xl text-center font-extrabold">
+            Tokyo camp toolbox
           </Text>
         </View>
         <View>
-          <Text className="text-2xl text-center">
+          <Text className="text-xl text-center">
             Your one-stop app to boost your bootcamp experience.
           </Text>
         </View>
@@ -56,22 +24,10 @@ export default function HomeScreen() {
           <Text className="text-3xl text-center font-bold mb-5">
             Upcoming events 📅
           </Text>
-          <View className="flex flex-col gap-2 items-end w-full mb-5">
-            {events.slice(0,3).map((event) => (
-              <View key={event.id} className="flex flex-row gap-2 items-center w-full">
-                <View className="flex flex-col items-center justify-center border-2 border-red-600 rounded-2xl h-16 w-16">
-                  <Text className="text-red-600 text-md">{extractDate(event.event_date)}</Text>
-                  <Text className="text-red-600 text-md">
-                    {event.event_date.split('-')[0]}
-                  </Text>
-                </View>
-                <Text className="text-xl max-w-80">{event.name}</Text>
-              </View>
-            ))}
-          </View>
-          <Text className="bg-red-400 border-2 border-red-500 rounded-2xl px-6 py-4 text-xl">
+          <EventList limit={3} />
+          <Link href="/events" className="bg-red-400 border-2 border-red-500 rounded-2xl px-6 py-4 text-xl">
             See all the events
-          </Text>
+          </Link>
         </View>
       </View>
     </>
